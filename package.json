@@ -1,0 +1,20 @@
+{
+  "name": "book-bridge",
+  "version": "1.0.0",
+  "description": "Helper app to reserve/order books from GoodReads lists at Fremont library",
+  "main": "lib/index.js",
+  "private": true,
+  "bin": {},
+  "now": {},
+  "dependencies": {
+    "express": "^4.14.0",
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node lib/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steve Armstrong",
+  "license": "Apache-2.0"
+}
