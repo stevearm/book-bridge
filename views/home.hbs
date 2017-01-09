@@ -1,2 +1,16 @@
 <h2>Book Bridge</h2>
 <p>This is an app to help check for GoodReads list for any books available at the Fremont, California library.</p>
+<ul>
+    <li>List my shelves:
+        <form action="#" onsubmit="return submitForm()">
+            <input id="grId" type="text" placeholder="GoodReads ID">
+            <input type="submit" value="Go" onclick="javascript:document.getElementById("grId").value;"/>
+        </form>
+    </li>
+</ul>
+<script type="text/javascript">
+function submitForm() {
+    window.location = "/gr/" + document.getElementById("grId").value;
+    return false;
+}
+</script>
