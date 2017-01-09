@@ -1,0 +1,9 @@
+<small>
+	<a href="/">Home</a>
+</small>
+<h2>GoodReads shelves</h2>
+<ul>
+{{#each shelves}}
+    <li><a href="/gr/{{../userId}}/{{name}}">{{name}}</a> ({{bookCount}} books)</li>
+{{/each}}
+</ul>
