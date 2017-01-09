@@ -12,10 +12,7 @@ if (searchTerms.length > 1) {
     return;
 }
 
-aclibrary.seed().then((seed) => {
-    // For now, only handle the first search
-    return aclibrary.search(seed, searchTerms[0]);
-}).then((result) => {
+aclibrary.search(null, searchTerms[0]).then((result) => {
     var availableLocations = result.books.map((x) => x.available).filter((x) => x);
     console.log("Got %s books with %s available", result.books.length, availableLocations.length);
     console.log(availableLocations);
