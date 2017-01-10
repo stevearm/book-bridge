@@ -2,8 +2,62 @@
     <a href="/">Home</a> | <a href="/gr/{{userId}}">Shelves</a>
 </small>
 <h2>GoodReads shelf '{{shelf}}'</h2>
+<button id="all">ALL&gt;</button>
 <ul>
 {{#each books}}
-    <li>{{name}} ({{author}})</li>
+    <li class="book"><span class="title">{{name}} ({{author}})</span><span class="data"><button>&gt;</button></span></li>
 {{/each}}
 </ul>
+
+<script type="text/javascript">
+function load(nodes) {
+    var terms = nodes.map((node) => {
+        var jNode = $(node);
+
+        // Wipe out the button
+        jNode.find(".data").first().text("");
+
+        return jNode.find(".title").first().text();
+    });
+
+    $.post("/fremont", { terms: terms }, function(data) {
+        for (var i = 0; i < nodes.length; i++) {
+            var bookTable = "<table>"
+                          + data.result[i].map((book)=> "<tr>" + "<td>" + book.type + "</td>"
+                                                               + "<td>" + book.available + "</td>"
+                                                               + "<td><a href='" + book.url + "'>" + book.title + "</a></td>"
+                                                               + "</tr>").join("")
+                          + "</table>";
+            var jNode = $(nodes[i]);
+            jNode.find(".data").first().html(bookTable);
+        }
+    }, "json");
+}
+
+$(document).ready(function(){
+    // Wire up the button for each book
+    $(".book").each((i, node) => {
+        var jNode = $(node);
+        jNode.find(".data > button").click(function() {
+            load([node]);
+        });
+    });
+
+    $("button#all").click(function() {
+        // Any books with a button still, queue them up in batches
+        var nodes = [];
+        $(".book").each((i, node) => {
+            if ($(node).find("button").length > 0) {
+                nodes.push(node);
+                if (nodes.length > 4) {
+                    load(nodes);
+                    nodes = [];
+                }
+            }
+        });
+        if (nodes.length > 0) {
+            load(nodes);
+        }
+    });
+});
+</script>
