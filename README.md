@@ -1,3 +1,5 @@
-Known issues
-============
-* Trying to list shelves for a non-existant GoodReads user hangs the response. Figure out how to handle this generally (not just for this handler).
+This app will list your [GoodReads](https://www.goodreads.com/) shelves, and allow you to search the [Fremont, California](http://aclibrary.org/fremont) public library for those books (to rent them). It's a very very specific app.
+
+Releases
+--------
+* [1.0](https://book-bridge-lvlnlrwzda.now.sh/) - Jan 13, 2017
