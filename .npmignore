@@ -1,0 +1,3 @@
+# Until we have a better way, this is now to include a gitignore'd file
+# https://github.com/zeit/now-cli/issues/157
+!/data/keys.json
